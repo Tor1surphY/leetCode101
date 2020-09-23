@@ -1,0 +1,51 @@
+/*
+给定两个大小为m和n的正序（从小到大）数组nums1和nums2。
+请你找出这两个正序数组的中位数，并且要求算法的时间复杂度为O(log(M+N))。
+你可以假设 nums1 和 nums2 不会同时为空。
+*/
+
+#include "../head.h"
+
+/* double findKthNumber(vector<int>& nums1, vector<int>& nums2, int k){
+    int m = nums1.size();
+    int n = nums2.size();
+    int i = 0, j = 0;
+    while (true) {
+        // 边界情况
+        if (i == m) return nums2[j + k - 1];
+        if (j == n) return nums1[i + k - 1];
+        if (k == 1) return min(nums1[i], nums2[j]);
+
+        // 正常情况
+        int newi = min(i + k/2 - 1, m-1);
+        int newj = min(j + k/2 - 1, n-1);
+        int pivot1 = nums1[newi];
+        int pivot2 = nums2[newj];
+        if(pivot1 <= pivot2){
+            k -= newi - i + 1;
+            i = newi + 1;
+        }
+        else{
+            k -= newj - j + 1;
+            j = newj + 1;
+        }
+    }
+} */
+
+double findKthNumber(vector<int>& nums1, vector<int>& nums2, int k){
+    
+}
+
+
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+    int size = nums1.size()+nums2.size();
+    if(size%2 == 1) return findKthNumber(nums1, nums2, (size+1)/2);
+    else return (findKthNumber(nums1, nums2, size/2 - 1)+findKthNumber(nums1, nums2, size/2))/2.0;
+}
+
+int main(){
+    vector<int> nums1 = {1, 3};
+    vector<int> nums2 = {2, 4};
+    cout << findMedianSortedArrays(nums1, nums2) << endl;
+    return 0;
+}
